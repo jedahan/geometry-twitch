@@ -6,7 +6,7 @@ geometry_prompt_todo_setup() {
 }
 
 geometry_prompt_todo_check() {
-  test $(geometry_prompt_todo)
+  test -n "$(geometry_prompt_todo)"
 }
 
 geometry_prompt_todo() {
@@ -14,17 +14,17 @@ geometry_prompt_todo() {
 }
 
 geometry_prompt_todo_render() {
-  echo $(prompt_geometry_colorize $GEOMETRY_PLUGIN_TODO_COLOR $(geometry_prompt_todo))
+  echo -n $(prompt_geometry_colorize $GEOMETRY_PLUGIN_TODO_COLOR "$(geometry_prompt_todo)")
 }
 
 todo() {
-  echo $@ >> $GEOMETRY_PLUGIN_TODO_FILE
+  echo $* >> $GEOMETRY_PLUGIN_TODO_FILE
 }
 
 todone() {
-  echo finished $(geometry_prompt_todo)
-  tail +2 $GEOMETRY_PLUGIN_TODO_FILE > /tmp/todo.txt
-  mv /tmp/todo.txt $GEOMETRY_PLUGIN_TODO_FILE
+  finished="$(geometry_prompt_todo)"
+  sed -ie '1d' $GEOMETRY_PLUGIN_TODO_FILE
+  echo finished $finished
 }
 
 geometry_plugin_register todo
