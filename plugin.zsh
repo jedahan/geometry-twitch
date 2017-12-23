@@ -1,4 +1,4 @@
-GEOMETRY_PLUGIN_TODO_COLOR=${GEOMETRY_PLUGIN_TODO_COLOR:-blue}
+GEOMETRY_PLUGIN_TODO_COLOR=${GEOMETRY_PLUGIN_TODO_COLOR:-gray}
 GEOMETRY_PLUGIN_TODO_FILE=${GEOMETRY_PLUGIN_TODO_FILE:-${HOME}/.todo.md}
 
 geometry_prompt_todo_setup() {
@@ -6,11 +6,11 @@ geometry_prompt_todo_setup() {
 }
 
 geometry_prompt_todo_check() {
-  test -n $(geometry_prompt_todo)
+  test $(geometry_prompt_todo)
 }
 
 geometry_prompt_todo() {
-  echo $(head -n1 $GEOMETRY_PLUGIN_TODO_COLOR)
+  head -n1 $GEOMETRY_PLUGIN_TODO_FILE
 }
 
 geometry_prompt_todo_render() {
@@ -23,7 +23,7 @@ todo() {
 
 todone() {
   echo finished $(geometry_prompt_todo)
-  tail +1 $GEOMETRY_PLUGIN_TODO_FILE > /tmp/todo.txt
+  tail +2 $GEOMETRY_PLUGIN_TODO_FILE > /tmp/todo.txt
   mv /tmp/todo.txt $GEOMETRY_PLUGIN_TODO_FILE
 }
 
