@@ -1,22 +1,30 @@
-GEOMETRY_PLUGIN_HYDRATE_COLOR=${GEOMETRY_PLUGIN_HYDRATE_COLOR:-blue}
-GEOMETRY_PLUGIN_HYDRATE_SYMBOL=${GEOMETRY_PLUGIN_HYDRATE_SYMBOL:-💧}
-GEOMETRY_PLUGIN_HYDRATE_FILE=${GEOMETRY_PLUGIN_HYDRATE_FILE:-${TMPDIR:-/tmp}/water}
-GEOMETRY_PLUGIN_HYDRATE_INTERVAL=${GEOMETRY_PLUGIN_HYDRATE_INTERVAL:-20} # in minutes
+GEOMETRY_PLUGIN_TODO_COLOR=${GEOMETRY_PLUGIN_TODO_COLOR:-blue}
+GEOMETRY_PLUGIN_TODO_FILE=${GEOMETRY_PLUGIN_TODO_FILE:-${HOME/.todo.md}}
 
-geometry_prompt_hydrate_setup() {
-  test -f $GEOMETRY_PLUGIN_HYDRATE_FILE || touch $GEOMETRY_PLUGIN_HYDRATE_FILE
+geometry_prompt_todo_setup() {
+  test -f $GEOMETRY_PLUGIN_TODO_FILE || touch $_
 }
 
-geometry_prompt_hydrate_check() {
-  test $(print $GEOMETRY_PLUGIN_HYDRATE_FILE(.Nmm+$GEOMETRY_PLUGIN_HYDRATE_INTERVAL))
+geometry_prompt_todo_check() {
+  test $( wc -l $GEOMETRY_PLUGIN_TODO_FILE )
 }
 
-geometry_prompt_hydrate_render() {
-  echo $(prompt_geometry_colorize $GEOMETRY_PLUGIN_HYDRATE_COLOR $GEOMETRY_PLUGIN_HYDRATE_SYMBOL)
+geometry_prompt_todo() {
+  echo $(head -n1 $GEOMETRY_PLUGIN_TODO_COLOR)
 }
 
-hydrate() {
-  touch $GEOMETRY_PLUGIN_HYDRATE_FILE
+geometry_prompt_todo_render() {
+  echo $(prompt_geometry_colorize $GEOMETRY_PLUGIN_TODO_COLOR $(geometry_prompt_todo))
 }
 
-geometry_plugin_register hydrate
+todo() {
+  echo $@ >> $GEOMETRY_PLUGIN_TODO_FILE
+}
+
+todone() {
+  echo finished $(geometry_prompt_todo)
+  tail +1 $GEOMETRY_PLUGIN_TODO_FILE > /tmp/todo.txt
+  mv /tmp/todo.txt $GEOMETRY_PLUGIN_TODO_FILE
+}
+
+geometry_plugin_register todo

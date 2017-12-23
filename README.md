@@ -1,19 +1,18 @@
 # Hydrate
 
-Reminds you to hydrate every once in a while. Run `hydrate` once you have hydrated.
+Shows the top thing on your todo list. `todone` deletes it, `todo` adds something to the list.
 
-![](hydrate.png)
+![](todo.png)
 
 ## Installation
 
 ```sh
-GEOMETRY_PROMPT_PLUGINS+=(hydrate)
+GEOMETRY_PROMPT_PLUGINS+=(todo)
 ```
 
 ## Configuration
 
 ```sh
-GEOMETRY_PLUGIN_HYDRATE_COLOR=blue
-GEOMETRY_PLUGIN_HYDRATE_SYMBOL=💧
-GEOMETRY_PLUGIN_HYDRATE_INTERVAL=20 # interval in minutes
+GEOMETRY_PLUGIN_TODO_COLOR=gray
+GEOMETRY_PLUGIN_TODO_FILE=$HOME/.todo.md
 ```
