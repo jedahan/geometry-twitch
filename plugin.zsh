@@ -2,11 +2,11 @@ GEOMETRY_PLUGIN_TODO_COLOR=${GEOMETRY_PLUGIN_TODO_COLOR:-blue}
 GEOMETRY_PLUGIN_TODO_FILE=${GEOMETRY_PLUGIN_TODO_FILE:-${HOME/.todo.md}}
 
 geometry_prompt_todo_setup() {
-  test -f $GEOMETRY_PLUGIN_TODO_FILE || touch $_
+  touch $GEOMETRY_PLUGIN_TODO_FILE
 }
 
 geometry_prompt_todo_check() {
-  test $( wc -l $GEOMETRY_PLUGIN_TODO_FILE )
+  test -n $(geometry_prompt_todo)
 }
 
 geometry_prompt_todo() {
