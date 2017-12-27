@@ -10,7 +10,7 @@ geometry_prompt_todo_check() {
 }
 
 geometry_prompt_todo() {
-  head -n1 $GEOMETRY_PLUGIN_TODO_FILE
+  echo -n "$(head -n1 $GEOMETRY_PLUGIN_TODO_FILE)"
 }
 
 geometry_prompt_todo_render() {
