@@ -26,5 +26,3 @@ todone() {
   sed -ie '1d' $GEOMETRY_PLUGIN_TODO_FILE
   echo finished $finished
 }
-
-geometry_plugin_register todo
