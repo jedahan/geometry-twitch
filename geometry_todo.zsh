@@ -3,6 +3,8 @@
 : ${GEOMETRY_TODO_COLOR:=gray}
 : ${GEOMETRY_TODO_FILE:=${HOME}/.todo.md}
 
+(( $+commands[geometry_todo] )) && return
+
 touch $GEOMETRY_TODO_FILE
 
 todo_head() {
