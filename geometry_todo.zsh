@@ -1,3 +1,5 @@
+# geometry_todo - simple stack of todo items
+
 : ${GEOMETRY_TODO_COLOR:=gray}
 : ${GEOMETRY_TODO_FILE:=${HOME}/.todo.md}
 

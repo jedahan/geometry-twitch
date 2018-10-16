@@ -1,18 +1,9 @@
-# Hydrate
+# geometry_todo
 
-Shows the top thing on your todo list. `todone` deletes it, `todo` adds something to the list.
+Shows the top thing on your todo list. Add items with `todo`, remove them with `todone`.
 
 ![](todo.png)
 
-## Installation
+Source [geometry_todo.zsh](/geometry_todo.zsh), then add geometry_todo to your prompt (`GEOMETRY_RPROMPT+=(geometry_todo)`).
 
-```sh
-GEOMETRY_PROMPT_PLUGINS+=(todo)
-```
-
-## Configuration
-
-```sh
-GEOMETRY_PLUGIN_TODO_COLOR=gray
-GEOMETRY_PLUGIN_TODO_FILE=$HOME/.todo.md
-```
+Change the color with `GEOMETRY_TODO_COLOR` and the file location with `GEOMETRY_TODO_FILE`.
