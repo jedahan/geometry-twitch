@@ -1,28 +1,21 @@
 # geometry_todo - simple stack of todo items
 
-: ${GEOMETRY_TODO_COLOR:=gray}
-: ${GEOMETRY_TODO_FILE:=${HOME}/.todo.md}
+export GEOMETRY_TODO=${GEOMETRY_TODO:-${HOME}/.todo.md}
+export GEOMETRY_TODONE=${GEOMETRY_TODONE:-${HOME}/.todone.md}
+touch $GEOMETRY_TODO $GEOMETRY_TODONE
 
-(( $+commands[geometry_todo] )) && return
-
-touch $GEOMETRY_TODO_FILE
-
-todo_head() {
-  head -n1 $GEOMETRY_TODO_FILE
+geometry_todo() {
+  todo=$(head -n1 $GEOMETRY_TODO 2>/dev/null)
+  [[ -z todo ]] && return
+  ansi ${GEOMETRY_TODO_COLOR:=gray} $(head -n1 $GEOMETRY_TODO)
 }
 
-function geometry_todo() {
-  local top=$(todo_head)
-  test -n $top || return
-  echo -n $(color $GEOMETRY_TODO_COLOR $top)
-}
-
-todo() {
-  echo $* >> $GEOMETRY_TODO_FILE
-}
+todo() { echo $* >> $GEOMETRY_TODO }
 
 todone() {
-  local finished=$(todo_head)
-  sed -ie '1d' $GEOMETRY_TODO_FILE
+  finished=$(head -n1 $GEOMETRY_TODO 2>/dev/null)
+  [[ -z $finished ]] && return
+  \sed -ie '1d' $GEOMETRY_TODO
+  echo $finished >> $GEOMETRY_TODONE
   echo finished $finished
 }
