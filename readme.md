@@ -1,13 +1,9 @@
-# geometry_todo
+# geometry_twitch
 
-Shows the top thing on your todo list. Add items with `todo`, remove them with `todone`.
+something to provide context while streaming. its really just a log
 
-![](todo.png)
+
 
-Source [geometry_todo.zsh](/geometry_todo.zsh), then add geometry_todo to your prompt (`GEOMETRY_RPROMPT+=(geometry_todo)`).
+Source [geometry_twitch.zsh](/geometry_twitch.zsh), then add geometry_twitch to your prompt (`GEOMETRY_RPROMPT+=(geometry_twitch)`).
 
-Change the color with `GEOMETRY_TODO_COLOR` and the file location with `GEOMETRY_TODO`.
-
-You can see what you have finished by looking in `$GEOMETRY_TODONE`
-
-![](todo.png)
+Change the color with `GEOMETRY_TWITCH_COLOR`, the symbol with `GEOMETRY_TWITCH_SYMBOL`, and the file location with `GEOMETRY_TWITCH`.
