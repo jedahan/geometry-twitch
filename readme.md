@@ -1,8 +1,8 @@
 # geometry_twitch
 
-something to provide context while streaming. its really just a log
+something to provide context while streaming. its really just prepend-only log. check out [twitch.tv/microNS](https://twitch.tv/microNS)
 
-
+![](screenshot.png)
 
 Source [geometry_twitch.zsh](/geometry_twitch.zsh), then add geometry_twitch to your prompt (`GEOMETRY_RPROMPT+=(geometry_twitch)`).
 
