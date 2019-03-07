@@ -6,7 +6,7 @@ touch $GEOMETRY_TWITCH
 geometry_twitch() {
   local t=$(head -n1 $GEOMETRY_TWITCH 2>/dev/null)
   [[ -z "$t" ]] && return
-  ansi ${GEOMETRY_TWITCH_COLOR:=magenta} "  $t"
+  ansi ${GEOMETRY_TWITCH_COLOR:=magenta} "${GEOMETRY_TWITCH_SYMBOL:=} $t"
 }
 
 twitch() {
